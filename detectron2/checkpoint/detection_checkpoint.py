@@ -70,7 +70,8 @@ class DetectionCheckpointer(Checkpointer):
     def _load_file(self, filename):
         if filename.endswith(".pkl"):
             with PathManager.open(filename, "rb") as f:
-                data = pickle.load(f, encoding="latin1")
+                #data = pickle.load(f, encoding="latin1")
+                data = torch.load(f)
             if "model" in data and "__author__" in data:
                 # file is in Detectron2 model zoo format
                 self.logger.info("Reading a file from '{}'".format(data["__author__"]))
